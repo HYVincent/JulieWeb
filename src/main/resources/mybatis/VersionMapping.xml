@@ -22,7 +22,7 @@
 		select * from version where version_id=(select MAX(version_id) from version)
 	</select>
 	
-	<select id="getVersion" resultType="com.vincent.julie.bean.VersionBean">
+	<select id="getVersion" parameterType="java.lang.Integer" resultType="com.vincent.julie.bean.VersionBean">
 		select * from version where version_code = #{version_code}
 	</select>
 	

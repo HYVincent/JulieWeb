@@ -18,4 +18,23 @@ public interface UserMapper {
 	int registerUser(User user);
 
 	int resetPassword(Map<String, Object> paramMap);
+
+	/**
+	 * 设置退出登录时间
+	 * @param paramMap
+	 */
+	void setLoginOutTime(Map<String,Object> paramMap);
+
+	/**
+	 * 设置登录时间
+	 * @param paramMap
+	 */
+	void setLoginTime(Map<String,Object> paramMap);
+
+	/**
+	 * 修改用户资料
+	 * @param paramMap
+	 */
+	void updateUserInfo(Map<String,Object> paramMap);
+
 }

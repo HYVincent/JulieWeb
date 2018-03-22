@@ -41,8 +41,8 @@ public class VersionController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "addNewVersion",method = RequestMethod.POST)
-	public  JulieResult addNewVersion(@RequestParam("version_code")int version_code, @RequestParam("version_codes")String version_codes,
+	@RequestMapping(value = "addVersion",method = RequestMethod.POST)
+	public  JulieResult addVersion(@RequestParam("version_code")int version_code, @RequestParam("version_codes")String version_codes,
 											@RequestParam("version_desc")String version_desc, @RequestParam("version_file_path")String filePath, HttpServletRequest request, HttpServletResponse response) {
 
 		JulieResult julieResult = new JulieResult();
@@ -57,7 +57,7 @@ public class VersionController {
 		versionBean.setVersion_codes(version_codes);
 		versionBean.setVersion_desc(version_desc);
 		versionBean.setVersion_file_path(filePath);
-		versionMapper.addNewVersion(versionBean);
+		versionMapper.addVersion(versionBean);
 		julieResult.setSuccess(true);
 		julieResult.setMsg(MsgConfig.VERSION_ADD_NEW_VERSION_SUCCESS);
 		julieResult.setErrorCode(CodeConfig.SERVICE_NORMAL);
@@ -89,7 +89,7 @@ public class VersionController {
 	 * @return
 	 */
 	public VersionBean getVersion(){
-		return versionMapper.selectVersion();
+		return versionMapper.getLatestVersion();
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class VersionController {
 	 * @return
 	 */
 	public VersionBean getVersion(int version_code){
-		return versionMapper.selectVersion(version_code);
+		return versionMapper.getVersion(version_code);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class VersionController {
 			julieResult.setMsg(MsgConfig.VERSION_DELETE_VERSION_NOT_EXIST);
 			return julieResult;
 		}
-		versionMapper.deleteVersion(version_code);
+		versionMapper.deleteIdVersion(version_code);
 		VersionBean versionBean1 = getVersion(version_code);
 		if(versionBean1 == null){
 			julieResult.setSuccess(true);

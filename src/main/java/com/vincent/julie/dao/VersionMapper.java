@@ -20,26 +20,26 @@ public interface VersionMapper {
      * 添加新版本
      * @param versionBean
      */
-    void addNewVersion(VersionBean versionBean);
+    void addVersion(VersionBean versionBean);
 
     /**
      * 查询最新版本
      * @param params
      * @return
      */
-    VersionBean selectVersion();
+    VersionBean getLatestVersion();
 
     /**
      * 查询某个版本
      * @param versionCode
      * @return
      */
-    VersionBean selectVersion(int versionCode);
+    VersionBean getVersion(int versionCode);
 
     /**
      * 删除某个版本
      * @param versionCode
      */
-    void deleteVersion(int versionCode);
+    void deleteIdVersion(int versionCode);
 
 }

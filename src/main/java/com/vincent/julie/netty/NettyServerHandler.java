@@ -25,7 +25,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<BaseMsg> {
 
 	@Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		NettyContextChannelMap.remove((SocketChannel) ctx.channel());
+		NettyContextChannelMap.getInstance().remove((SocketChannel) ctx.channel());
 	}
 
 	@Override

@@ -111,6 +111,10 @@ public class UserController {
 				user.setApi_token(sha1Token);
 				result.setMsg(MsgConfig.USER_LOGIN_SUCCESS);
 				result.setData(user);
+				Map<String,Object> param = new HashMap<>();
+				param.put("userLoginTime",System.currentTimeMillis());
+				param.put("user_phone",user_phone);
+				userMapper.setLoginTime(param);
 				return result;
 			} else {
 				result.setErrorCode(CodeConfig.SERVICE_ERROR);
