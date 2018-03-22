@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vincent.julie.dao.VersionMapper">
+
+	<!-- 添加版本到数据库 -->
+	<insert id="addVersion" parameterType="java.util.Map">
+		insert into version(
+			version_code,
+			version_codes,
+			version_desc,
+			version_file_path
+			)values(
+			#{version_code},
+			#{version_codes},
+			#{version_desc},
+			#{version_file_path})
+	</insert>
+	
+	<!-- 查询最新版本 -->
+	<select id="getLatestVersion" resultType="com.vincent.julie.bean.VersionBean">
+		select * from version where version_id=(select MAX(version_id) from version)
+	</select>
+	
+	<select id="getVersion" resultType="com.vincent.julie.bean.VersionBean">
+		select * from version where version_code = #{version_code}
+	</select>
+	
+	<!-- 根据版本id删除某一个版本记录 -->
+	<delete id="deleteIdVersion" parameterType="java.lang.Integer">
+		delete from version where version_id = #{version_id}
+	</delete>
+</mapper>

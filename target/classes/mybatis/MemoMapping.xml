@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.vincent.julie.dao.MemoMapper">
+
+	<!-- 插入memo记录 -->
+	<insert id="addMemo" parameterType="com.vincent.julie.bean.MemoBean">
+	insert into memo(user_id,memo_title,memo_content,memo_target_time)values(
+		#{user_id},
+		#{memo_title},
+		#{memo_content},
+		#{memo_target_time}
+	);
+	</insert>
+
+	<!-- 根据user_id和memo_title查询记录 -->
+	<select id="getMemoFromTitle" parameterType="java.util.Map" resultType="com.vincent.julie.bean.MemoBean">
+		select * from memo where user_id = #{user_id} and memo_title = #{memo_title}
+	</select>
+
+	<!-- 获取某用户所有的memo -->
+	<select id="getMemoAll" parameterType="java.lang.Integer" resultType="java.util.Map">
+		select * from memo where user_id = #{user_id}
+	</select>
+
+</mapper>
